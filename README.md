@@ -33,3 +33,9 @@ Develop a Jupyter Notebook-based analytics to deliver detailed insights into:
 - **Key Findings**: Summary of critical insights from the data.
   
 - **Recommendations**: Actionable business strategies based on analytical results.
+
+  # License
+  This project is licensed under [MIT License]. You are free to use, modify and share this project provided that you give  proper attributions.
+
+  # About Me
+  My name is Geu Ghai and I am an ALX Data Engineering learner. I am transitioning from Mathematics field to Data Engineering. 
