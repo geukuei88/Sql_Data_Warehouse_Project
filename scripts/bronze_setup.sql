@@ -92,6 +92,7 @@ GO
 -- ======================================================
 
 -- Load Customers
+TRUNCATE TABLE bronze.Crm_Customers;
 BULK INSERT bronze.Crm_Customers
 FROM 'C:\Sql\Dwh_Project\Datasets\Source_Crm\Customers.csv'
 WITH (
@@ -102,6 +103,7 @@ WITH (
 GO
 
 -- Load Products
+TRUNCATE TABLE bronze.Erp_Products;
 BULK INSERT bronze.Erp_Products
 FROM 'C:\Sql\Dwh_Project\Datasets\Source_Erp\Products.csv'
 WITH (
@@ -112,6 +114,7 @@ WITH (
 GO
 
 -- Load Orders into staging
+TRUNCATE TABLE staging.Erp_Orders;
 BULK INSERT staging.Erp_Orders
 FROM 'C:\Sql\Dwh_Project\Datasets\Source_Erp\Orders.csv'
 WITH (
@@ -122,6 +125,7 @@ WITH (
 GO
 
 -- Transform staging to bronze
+TRUNCATE TABLE bronze.Erp_Orders;
 INSERT INTO bronze.Erp_Orders
 SELECT 
     Order_ID,
