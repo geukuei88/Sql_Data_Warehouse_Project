@@ -1,6 +1,15 @@
--- ======================================================
--- SILVER LAYER: Clean and Load PRODUCTS (FINAL)
--- ======================================================
+/* ====================================================================
+BATCH 5: CLEAN AND LOAD PRODUCT DATA FROM BRONZE TO SILVER
+-Standardizes category and sub-category values to proper case.
+-Trims whitespace from all text fields while preserving original product
+name formatting
+
+-Verify Product Data Cleansing Results
+-Validates product data quality including row counts, category and 
+sub-category distribution analysis,
+-sample data display, and whitespace issue checking
+========================================================================== */
+
 USE DataWarehouse;
 GO
 
@@ -41,9 +50,9 @@ FROM bronze.Erp_Products;
 GO
 
 
--- ======================================================
--- VERIFICATION
--- ======================================================
+/* ======================================================
+VERIFICATION
+-- ====================================================== */
 PRINT '============================================';
 PRINT 'VERIFICATION RESULTS';
 PRINT '============================================';
