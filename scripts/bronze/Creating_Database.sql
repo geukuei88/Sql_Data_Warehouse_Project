@@ -1,6 +1,6 @@
 
 /* ==================================================================================================
-Script Purpose: Create Database and Schemas
+SCRIPT PURPOSE: CREATE DATABASE AND SCHEMAS 
 	This script creates a new database called 'DataWarehouse' after checking if it already exists.
 	If the database exists, it is dropped and recreated. Moreover, the cript sets up three schemas 
 	within the database and these are: 'bronze', 'silver' and 'gold'.
