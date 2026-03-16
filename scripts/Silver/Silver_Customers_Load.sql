@@ -1,14 +1,22 @@
-scriptsscripts-- ======================================================
--- SILVER LAYER: Clean and Load Customers
--- ======================================================
+/* ==============================================================================
+CLEAN AND LOAD CUSTOMERS DATA FROM BRONZE TO SILVER LAYER
+-Performs data cleansing operations including removing control characters 
+from customer names, 
+standardizing segment values to proper case,trimming whitespace from city names, 
+and adding audit timestamps
+-Verify Customer Data Cleansing Results
+-Runs validation checks to ensure data quality including:
+-verifying removal of special characters, checking problem customers,validating 
+segment standardization, comparing row counts, and displaying sample of cleaned data
+ ===================================================================================== */
 
 -- Clear existing customers data (if any)
 TRUNCATE TABLE silver.Crm_Customers;
 GO
 
--- ======================================================
--- LOAD & CLEAN CUSTOMERS
--- ======================================================
+/* ======================================================
+ LOAD & CLEAN CUSTOMERS
+-====================================================== */
 INSERT INTO silver.Crm_Customers (
     Customer_ID,
     Customer_Name,
@@ -63,9 +71,9 @@ SELECT
 FROM bronze.Crm_Customers;
 GO
 
--- ======================================================
--- VERIFY THE CLEANING WORKED
--- ======================================================
+/* ======================================================
+VERIFY THE CLEANING WORKED
+-- ====================================================== */
 
 -- 1. Check that special characters are GONE (should return 0)
 PRINT '--- CHECK 1: Special Characters Removed ---';
