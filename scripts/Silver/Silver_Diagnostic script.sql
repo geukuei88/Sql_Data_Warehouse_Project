@@ -23,11 +23,13 @@ COUNT(*) as Special_Characters
 FROM bronze.Crm_Customers
 WHERE Customer_Name LIKE '%[' + CHAR(0) + '-' + CHAR(31) + ']%' ESCAPE '\';
 
- -- Find names that starting with lowercase
+
+
+-- Find names that start with lowercase
 SELECT 
-  Customer_ID,
-  Customer_Name,
-  'Starts with lowercase' Occurrence
+    Customer_ID,
+    Customer_Name,
+    'Starts with lowercase' AS Occurrence
 FROM bronze.Crm_Customers
 WHERE ASCII(LEFT(Customer_Name, 1)) BETWEEN 97 AND 122;  -- a-z
 
@@ -35,48 +37,57 @@ WHERE ASCII(LEFT(Customer_Name, 1)) BETWEEN 97 AND 122;  -- a-z
 SELECT 
     Customer_ID,
     Customer_Name,
-    'Internal capital' occurrence
+    'Internal capital' AS Occurrence
 FROM bronze.Crm_Customers
 WHERE Customer_Name LIKE '%[a-z][A-Z]%' 
    OR Customer_Name LIKE '%[A-Z][A-Z][a-z]%';  -- Multiple caps in a row
 
 -- Find leading/trailing spaces that may cause mismatches in JOINs 
- SELECT 
- Customer_Name
- FROM bronze.Crm_Customers
- WHERE Customer_Name <> TRIM(Customer_Name);
+SELECT 
+    Customer_Name
+FROM bronze.Crm_Customers
+WHERE Customer_Name <> TRIM(Customer_Name);
 
-
- /* COLUMN 3: Segment: Domain Value Validation
- - The first Letter of each segment should be UPPER CASE
- -Check Segment against expected values (Consumer, Corporate, Home Office) */
+/* COLUMN 3: Segment: Domain Value Validation
+   - The first letter of each segment should be UPPER CASE
+   - Check Segment against expected values (Consumer, Corporate, Home Office) */
 
 -- Find invalid Segment Values that are not within the Segment domain
-SELECT 'Invalid Segment Values' as Check_Name,
-       Segment,
-       COUNT(*) as Occurrences
+SELECT 
+    'Invalid Segment Values' AS Check_Name,
+    Segment,
+    COUNT(*) AS Occurrences
 FROM bronze.Crm_Customers
 WHERE Segment NOT IN ('Consumer', 'Corporate', 'Home Office')
 GROUP BY Segment;
- 
- -- Leading/trailing spaces in Segment
- SELECT 
- Segment
- FROM bronze.Crm_Customers
- WHERE Segment <> TRIM(Segment);
+
+-- Leading/trailing spaces in Segment
+SELECT 
+    Segment
+FROM bronze.Crm_Customers
+WHERE Segment <> TRIM(Segment);
 
 /* COLUMN 4: Country: Domain Validation
-- Check Country against expected country (United States) */
+   - Check Country against expected country (United States) */
 
--- Find the invald country values
+-- Find the invalid country values
 SELECT 
-    'Invalid Country Values' as Check_Name,
+    'Invalid Country Values' AS Check_Name,
     Country,
-    COUNT(*) as Occurrence
+    COUNT(*) AS Occurrence
 FROM bronze.Crm_Customers
 WHERE Country != 'United States'
-  AND Country IS NOT NULL
+    AND Country IS NOT NULL
 GROUP BY Country;
+
+
+
+
+
+
+
+
+
 
 -- Or See exactly what's in my Country column
 SELECT 
