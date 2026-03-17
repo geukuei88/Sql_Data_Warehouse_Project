@@ -5,7 +5,7 @@ COLUMN 1: Customer_ID: Primary Key Integrity:
 
 SELECT
 Customer_ID,
-COUNT(*) Total_Duplicates
+COUNT(*) as Total_Duplicates
 FROM bronze.Crm_Customers
 GROUP BY Customer_ID
 HAVING COUNT(*) >1 OR Customer_ID IS NULL;
