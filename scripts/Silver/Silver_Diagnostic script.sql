@@ -29,7 +29,7 @@ SELECT
     Customer_Name,
     'Starts with lowercase' Occurrence
 FROM bronze.Crm_Customers
-WHERE ASCII(LEFT(Customer_Name, 1)) BETWEEN 97 AND 122; 
+WHERE ASCII(LEFT(Customer_Name, 1)) BETWEEN 97 AND 122;  -- a-z
 
 -- Find names with uppercase in middle (camelCase)
 SELECT 
