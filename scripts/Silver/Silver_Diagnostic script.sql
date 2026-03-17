@@ -49,8 +49,7 @@ WHERE Customer_Name LIKE '%[a-z][A-Z]%'
 
  /* COLUMN 3: Segment: Domain Value Validation
  - The first Letter of each segment should be UPPER CASE
- -Check Segment against expected values (Consumer, Corporate, Home Office)
- */
+ -Check Segment against expected values (Consumer, Corporate, Home Office) */
 
 -- Find invalid Segment Values that are not within the Segment domain
 SELECT 'Invalid Segment Values' as Check_Name,
