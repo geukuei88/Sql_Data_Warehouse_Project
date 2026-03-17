@@ -14,9 +14,6 @@ segment standardization, comparing row counts, and displaying sample of cleaned 
 TRUNCATE TABLE silver.Crm_Customers;
 GO
 
-/* ======================================================
- LOAD & CLEAN CUSTOMERS
--====================================================== */
 INSERT INTO silver.Crm_Customers (
     Customer_ID,
     Customer_Name,
@@ -33,11 +30,11 @@ SELECT
     Customer_ID,
     
     -- 2. Customer_Name: REMOVE CONTROL CHARACTERS
-    -- This fixes the \h, \f, \b issues found in your data
+    -- This fixes the \h, \f, \b issues found in the data
     REPLACE(REPLACE(REPLACE(REPLACE(
         Customer_Name, 
-        CHAR(8), ''),   -- \b (backspace) - found in your data
-        CHAR(12), ''),  -- \f (form feed) - found in your data
+        CHAR(8), ''),   -- \b (backspace) - found in the data
+        CHAR(12), ''),  -- \f (form feed) - found in the data
         CHAR(10), ' '), -- \n (new line) - replace with space
         CHAR(13), ''    -- \r (carriage return)
     ) as Customer_Name,
