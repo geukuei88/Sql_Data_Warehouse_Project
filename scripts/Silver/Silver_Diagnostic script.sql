@@ -23,11 +23,11 @@ COUNT(*) as Special_Characters
 FROM bronze.Crm_Customers
 WHERE Customer_Name LIKE '%[' + CHAR(0) + '-' + CHAR(31) + ']%' ESCAPE '\';
 
- 
+ -- Find names that starting with lowercase
 SELECT 
-Customer_ID,
-Customer_Name,
-'Starts with lowercase' Occurrence
+  Customer_ID,
+  Customer_Name,
+  'Starts with lowercase' Occurrence
 FROM bronze.Crm_Customers
 WHERE ASCII(LEFT(Customer_Name, 1)) BETWEEN 97 AND 122;  -- a-z
 
